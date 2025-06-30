@@ -8,6 +8,7 @@ from tkinter import messagebox
 import json
 import os
 import pyperclip
+import sys
 
 # Importações para a bandeja do sistema
 from pystray import MenuItem as item
@@ -16,10 +17,20 @@ from PIL import Image
 
 # --- CONFIGURAÇÃO ---
 DATA_FILE = "textos.json"
-ICON_FILE = "icon.png" # Certifique-se que este arquivo existe na pasta
+ICON_FILE = "icone.ico" # Certifique-se que este arquivo existe na pasta
 data_list = [] # A fonte da verdade agora é uma lista de dicionários
 
 # --- FUNÇÕES DE DADOS ---
+
+def resource_path(relative_path):
+    """ Retorna o caminho absoluto para o recurso, funciona para dev e para PyInstaller """
+    try:
+        # PyInstaller cria uma pasta temporária e armazena o caminho em _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 
 def load_data():
     global data_list
@@ -183,7 +194,7 @@ def show_app(icon, item):
 
 def hide_window():
     root.withdraw()
-    image = Image.open(ICON_FILE)
+    image = Image.open(resource_path(ICON_FILE))
     menu = (item('Mostrar', show_app), item('Sair', quit_app))
     icon = pystray.Icon("Copiador", image, "Copiador de Textos", menu)
     icon.run()
