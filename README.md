@@ -6,10 +6,8 @@ Uma aplicação de desktop desenvolvida em Python com Tkinter e ttkbootstrap par
 
 ## 📸 Screenshot
 
-> **Nota:** É altamente recomendável que você tire um print da tela do seu aplicativo e substitua a imagem de exemplo abaixo para mostrar como ele é!
+![image](https://github.com/user-attachments/assets/af1f1fbf-7c59-4422-b823-7d8c18918bb5)
 
-![Exemplo de Screenshot](caminho/para/sua/screenshot.png)
-<!-- Substitua o caminho acima pela sua imagem real -->
 
 ---
 
