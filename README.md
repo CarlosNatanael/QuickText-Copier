@@ -48,7 +48,7 @@ Siga os passos abaixo para configurar e rodar o projeto em sua máquina.
 
 1. Clone o repositório:
     ```bash
-    git clone https://github.com/seu-usuario/QuickText-Copier.git
+    git clone https://github.com/CarlosNatanael/QuickText-Copier.git
     cd QuickText-Copier
     ```
 2. Instale as dependências:
