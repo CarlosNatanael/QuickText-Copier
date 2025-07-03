@@ -1,12 +1,11 @@
-# py -3.11 app_copia_texto_final_v3.py
-
-import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
-import tkinter as tk
 from tkinter import messagebox
+import ttkbootstrap as ttk
+import tkinter as tk
+import pyperclip
+import threading
 import json
 import os
-import pyperclip
 import sys
 
 from pystray import MenuItem as item
@@ -195,19 +194,23 @@ def show_add_edit_window(item_index_to_edit=None):
 
 # --- BANDEJA DO SISTEMA ---
 def quit_app(icon, item):
-    icon.stop()
+    icon.stop()  # Para a thread do ícone
     root.destroy()
 
 def show_app(icon, item):
-    icon.stop()
-    root.after(0, root.deiconify)
+    icon.stop()  # Para a thread do ícone
+    root.after(0, root.deiconify) # Traz a janela de volta
 
 def hide_window():
+    """Esconde a janela e mostra o ícone na bandeja usando uma thread."""
     root.withdraw()
     image = Image.open(resource_path(ICON_FILE))
     menu = (item('Mostrar', show_app), item('Sair', quit_app))
     icon = pystray.Icon("Copiador", image, "Copiador de Textos Rápidos", menu)
-    icon.run()
+
+    thread = threading.Thread(target=icon.run)
+    thread.daemon = True
+    thread.start()
 
 # --- INTERFACE GRÁFICA PRINCIPAL ---
 
